@@ -16,7 +16,7 @@
             overflow: hidden;
         }
 
-        /* Farbe für den Namen Michelle */
+        /* Farbe für den Namen Hola Bebé */
         .name-header {
             color: #ff4d6d;
             font-size: 1.8rem;
@@ -72,7 +72,7 @@
 
     <div class="name-header">Michelle</div>
 
-    <h1>Hola Bebé, quieres ser mi Valentín? ❤️</h1>
+    <h1>Quieres ser mi Valentín? ❤️</h1>
     
     <div class="container">
         <button id="yesBtn" class="btn" onclick="celebrate()">Si!</button>
