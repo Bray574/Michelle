@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quieres ser mi Valentin?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #fff0f3;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Container für die Texte, damit alles Rot bleibt */
+        .header-container {
+            color: #ff4d6d; /* Dein Valentin-Rot */
+            user-select: none;
+            margin-bottom: 40px;
+        }
+
+        .name-label {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin: 0;
+        }
+
+        .button-area {
+            position: relative;
+            width: 300px;
+            height: 100px;
+        }
+
+        .btn {
+            width: 100px;
+            height: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: absolute;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            left: 20px;
+        }
+
+        #noBtn {
+            background-color: #ffffff;
+            color: #ff4d6d;
+            border: 2px solid #ff4d6d;
+            right: 20px;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <span class="name-label">Michelle</span>
+        <h1>Hola Bebé, quieres ser mi Valentín? ❤️</h1>
+    </div>
+    
+    <div class="button-area">
+        <button id="yesBtn" class="btn" onclick="celebrate()">Si!</button>
+        <button id="noBtn" class="btn">No</button>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+
+        function moveButton() {
+            const btnWidth = 100;
+            const btnHeight = 50;
+            const padding = 20;
+
+            const maxX = window.innerWidth - btnWidth - padding;
+            const maxY = window.innerHeight - btnHeight - padding;
+
+            const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveButton();
+        });
+
+        function celebrate() {
+            document.body.innerHTML = `
+                <div style="color: #ff4d6d;">
+                    <h1>❤️ Lo sabía!😋 Te amo mi Amorcito! ❤️</h1>
+                    <p style="font-size: 60px; margin: 20px 0;">🌹✨🥂🥰</p>
+                    <p style="font-size: 1.5rem;">Tengo muchas ganas de verte!</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
