@@ -1,7 +1,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Be My Valentine?</title>
+    <title>Quieres ser mi Valentin?</title>
     <style>
         body {
             display: flex;
@@ -101,11 +101,12 @@
         });
     </script>
 
-    <script>
+   <script>
         function celebrate() {
             document.body.innerHTML = `
                 <h1 style="color: #ff4d6d;">❤️ Lo sabía!😋 Te amo mi Amorcito! ❤️</h1>
                 <p style="font-size: 60px;">🌹✨🥂🥰</p>
+                <p style="font-family: sans-serif; color: #ff4d6d;">Tengo muchas ganas de verte!</p>
             `;
         }
     </script>
