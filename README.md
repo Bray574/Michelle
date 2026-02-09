@@ -16,6 +16,13 @@
             overflow: hidden;
         }
 
+        /* Farbe für den Namen Michelle */
+        .name-header {
+            color: #ff4d6d;
+            font-size: 1.8rem;
+            margin-bottom: -10px; /* Zieht den Satz näher an den Namen */
+        }
+
         h1 {
             color: #ff4d6d;
             font-size: 2.2rem;
@@ -25,12 +32,11 @@
 
         .container {
             position: relative;
-            width: 300px; /* Begrenzt den Startbereich */
+            width: 300px;
             height: 100px;
         }
 
         .btn {
-            /* Fixiert die Größe für beide Buttons identisch */
             width: 100px;
             height: 50px;
             font-size: 1.1rem;
@@ -40,10 +46,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-sizing: border-box; /* Wichtig für die Rahmengröße */
+            box-sizing: border-box;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             position: absolute;
-            transition: none; /* Sofortiger Sprung */
+            transition: none;
         }
 
         #yesBtn {
@@ -64,6 +70,8 @@
 </head>
 <body>
 
+    <div class="name-header">Michelle</div>
+
     <h1>Hola Bebé, quieres ser mi Valentín? ❤️</h1>
     
     <div class="container">
@@ -75,7 +83,6 @@
         const noBtn = document.getElementById('noBtn');
 
         function moveButton() {
-            // Definiert die Button-Größe fest für die Berechnung
             const btnWidth = 100;
             const btnHeight = 50;
             const padding = 20;
@@ -86,7 +93,6 @@
             const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
             const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
 
-            // Setzt feste Breite/Höhe direkt im Style, um das "Rechteck-Problem" zu killen
             noBtn.style.position = 'fixed';
             noBtn.style.width = btnWidth + 'px'; 
             noBtn.style.height = btnHeight + 'px';
@@ -99,9 +105,7 @@
             e.preventDefault();
             moveButton();
         });
-    </script>
 
-   <script>
         function celebrate() {
             document.body.innerHTML = `
                 <h1 style="color: #ff4d6d;">❤️ Lo sabía!😋 Te amo mi Amorcito! ❤️</h1>
