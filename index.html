@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quieres ser mi Valentin?</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         body {
             display: flex;
@@ -13,16 +14,33 @@
             height: 100vh;
             margin: 0;
             font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: #fff0f3;
+            background: linear-gradient(135deg, #fff0f3 0%, #ffdde1 100%);
             text-align: center;
             overflow: hidden;
+            position: relative;
         }
 
-        /* Container für die Texte, damit alles Rot bleibt */
+        /* Schwebende Hintergrund-Herzen */
+        .floating-heart {
+            position: absolute;
+            color: rgba(255, 77, 109, 0.4);
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            animation: floatUp 6s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
         .header-container {
-            color: #ff4d6d; /* Dein Valentin-Rot */
+            color: #ff4d6d;
             user-select: none;
             margin-bottom: 40px;
+            z-index: 1;
         }
 
         .name-label {
@@ -41,6 +59,7 @@
             position: relative;
             width: 300px;
             height: 100px;
+            z-index: 1;
         }
 
         .btn {
@@ -72,9 +91,40 @@
             right: 20px;
             z-index: 999;
         }
+
+        /* Styling für die Rosen unten */
+        .rose-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        .rose {
+            font-size: 50px;
+            animation: grow 1s ease-out forwards;
+        }
+        @keyframes grow {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
     </style>
 </head>
 <body>
+
+    <script>
+        // Herzen im Hintergrund erzeugen
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 7000);
+        }
+        setInterval(createHeart, 500);
+    </script>
 
     <div class="header-container">
         <span class="name-label">Hola Bebé</span>
@@ -90,15 +140,10 @@
         const noBtn = document.getElementById('noBtn');
 
         function moveButton() {
-            const btnWidth = 100;
-            const btnHeight = 50;
-            const padding = 20;
-
-            const maxX = window.innerWidth - btnWidth - padding;
-            const maxY = window.innerHeight - btnHeight - padding;
-
-            const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
-            const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+            const maxX = window.innerWidth - 120;
+            const maxY = window.innerHeight - 70;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
 
             noBtn.style.position = 'fixed';
             noBtn.style.left = randomX + 'px';
@@ -112,11 +157,33 @@
         });
 
         function celebrate() {
+            // Konfetti auslösen (mit Überprüfung ob Library geladen ist)
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 200,
+                    spread: 80,
+                    origin: { y: 0.6 },
+                    colors: ['#ff4d6d', '#ffffff', '#ffafcc']
+                });
+            }
+
+            // Neue Seite anzeigen mit Rosen
             document.body.innerHTML = `
-                <div style="color: #ff4d6d;">
+                <div style="color: #ff4d6d; z-index: 10; position: relative;">
                     <h1>❤️ Lo sabía!😋 Te amo mi Amorcito! ❤️</h1>
-                    <p style="font-size: 60px; margin: 20px 0;">🌹✨🥂🥰</p>
+                    <p style="font-size: 60px; margin: 20px 0;">✨🥂🥰</p>
                     <p style="font-size: 1.5rem;">Tengo muchas ganas de verte!</p>
+                    
+                    <div class="rose-container">
+                        <span class="rose">🌹</span>
+                        <span class="rose">🌹</span>
+                        <span class="rose">🌹</span>
+                        <span class="rose">🌹</span>
+                        <span class="rose">🌹</span>
+                        <span class="rose">🌹</span>
+                        <span class="rose">🌹</span>
+                        <span class="rose">🌹</span>
+                    </div>
                 </div>
             `;
         }
